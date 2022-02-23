@@ -23,7 +23,7 @@
 ## Descripción :notebook:
 
 **Aprender Node.js 02-2022**
-<p>Este curso tiene por objetivo llevarte de cero conocimiento de Vue hasta un nivel competitivo en el ambiente laboral de hoy en día. Este curso está construido 100% en js funcional y componentes.</p>
+<p>Este curso tiene por objetivo llevarte de cero conocimiento de Nodejs hasta un nivel competitivo en el ambiente laboral de hoy en día. Este curso está construido 100% en js funcional y componentes.</p>
 
 
 
