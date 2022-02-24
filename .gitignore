@@ -292,10 +292,10 @@ atlassian-ide-plugin.xml
 .idea/sonarlint/
 
 # ignore .idea
-.idea/
-.idea/*
+
 sc8-rest_server-init_config/.idea/
 sc9-rest_server-collection_users/.idea/
+.idea
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
