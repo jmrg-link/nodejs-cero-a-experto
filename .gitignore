@@ -1,7 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode,webstorm,linux,macos,windows,dotenv,git,node
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode,webstorm,linux,macos,windows,dotenv,git,node
 
+.idea
 ### dotenv ###
 .env
 
