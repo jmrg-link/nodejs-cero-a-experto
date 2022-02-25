@@ -8,7 +8,7 @@ class Server {
         this.app = express();
 
         this.Paths = {
-            users: "/api/users" ,
+            users: "/api/users"
         };
 
         // Connect DB
@@ -21,7 +21,7 @@ class Server {
         this.routes();
     }
 
-    async connectDB(){
+    async connectDB() {
         await dbConnect()
     }
 

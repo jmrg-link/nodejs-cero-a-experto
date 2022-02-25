@@ -1,6 +1,7 @@
 // users - controllers
-
 const { response , request } = require( "express" );
+const bcryptjs = require( 'bcryptjs' )
+const User = require( '../models/user' )
 
 const usersGet = ( req = request , res = response ) => {
     const { q , name = "no name" , apikey , page = 1 , limit = 10 } = req.query;
@@ -28,15 +29,22 @@ const usersPatch = ( req , res = response ) => {
     } );
 };
 
-const usersPost = ( req , res = response ) => {
-    const { name , age } = req.body;
-    res.json( {
-        msg: "post api - controller" ,
-        age ,
-        name ,
-    } );
+// POST : create Users
+const usersPost = async ( req , res = response ) => {
+
+
+    const { name , lastname , email , password , role } = req.body;
+    const user = new User( { name , lastname , password , email , role } )
+
+    // encrypt password -> user.password (10 salt)
+    const salt = bcryptjs.genSaltSync( 10 )
+    user.password = bcryptjs.hashSync( password , salt )
+
+    await user.save()
+    res.json( { user } );
 };
 
+// DELETE : delete user :id
 const usersDelete = ( req , res = response ) => {
     res.json( {
         msg: "delete api - controller" ,
