@@ -1,7 +1,8 @@
 // helpers - index
-const { isValidRole , isExistEmail } = require('./db-validators')
+const { isValidRole , isExistEmail ,isExistUserById} = require('./db-validators')
 
 module.exports = {
     isValidRole,
-    isExistEmail
+    isExistEmail,
+    isExistUserById
 }

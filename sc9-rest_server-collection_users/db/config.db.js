@@ -5,6 +5,7 @@ const dbConnect = async () => {
     try {
         await mongoose.connect( config.mongodb_cnn_prod ,{
             maxPoolSize: 10,
+            autoIndex:false,
             serverSelectionTimeoutMS: 10000,
             socketTimeoutMS: 45000,
             family: 4
