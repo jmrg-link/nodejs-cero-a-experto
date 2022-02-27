@@ -16,7 +16,7 @@ const router = Router();
 //GET ALL USERS
 router.get( "/" , usersGet );
 
-//PUT :
+//PUT : UPDATE USER
 router.put( "/:id" , [
     check( 'id' , 'Id is not valid' ).isMongoId() ,
     check( 'id' ).custom( isExistUserById ) ,
@@ -27,7 +27,7 @@ router.put( "/:id" , [
 //PATCH :
 router.patch( "/" , usersPatch );
 
-//POST: USERS
+//POST: CREATE USERS
 router.post( "/" , [
     check( 'name' , 'Name is required' ).not().isEmpty() ,
     check( 'lastname' , 'Lastname is required' ).not().isEmpty() ,
@@ -41,6 +41,10 @@ router.post( "/" , [
 ] , usersPost );
 
 //DELETE :
-router.delete( "/" , usersDelete );
+router.delete( "/:id" , [
+    check( 'id' , 'Id is not valid' ).isMongoId() ,
+    check( 'id' ).custom( isExistUserById ) ,
+    validationFields
+] , usersDelete );
 
 module.exports = router;

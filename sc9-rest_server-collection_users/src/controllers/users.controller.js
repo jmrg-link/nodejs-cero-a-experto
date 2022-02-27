@@ -7,16 +7,22 @@ const User = require( '../models/user' )
 // GET ALL USER
 const usersGet = async ( req = request , res = response ) => {
     const { limit = 5 , from = 0 } = req.query
-    const users = await User.find()
-        .limit( Number( limit ) )
-        .skip(Number(from))
+    const query = { status: true }
+
+    const [ total , users ] = await Promise.all( [
+        User.countDocuments( query ) ,
+        User.find( query )
+            .limit( Number( limit ) )
+            .skip( Number( from ) )
+    ] )
 
     res.json( {
+        total ,
         users
     } );
 };
 
-// PUT : CREATE USER
+// PUT : MODIFY USER
 const usersPut = async ( req , res = response ) => {
     const { id } = req.params
     const { _id , password , google , email , ...rest } = req.body
@@ -55,10 +61,16 @@ const usersPost = async ( req , res = response ) => {
     res.json( { user } );
 };
 
-// DELETE : delete user :id
-const usersDelete = ( req , res = response ) => {
+// DELETE : DELETE USER ID
+const usersDelete = async ( req , res = response ) => {
+    const { id } = req.params
+    // const user = await User.findByIdAndDelete(id) // borrar usuario
+    const user = await User.findByIdAndUpdate( id , { status: false } )
+
+
     res.json( {
-        msg: "delete api - controller" ,
+        // user // retornar usuario borrado
+        user
     } );
 };
 
