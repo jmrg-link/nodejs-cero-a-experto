@@ -6,9 +6,9 @@ const { dbConnect } = require( "../../db/config.db" );
 class Server {
     constructor() {
         this.app = express();
-
         this.Paths = {
-            users: "/api/users"
+            users: "/api/users" ,
+            auth: "/api/auth"
         };
 
         // Connect DB
@@ -35,8 +35,10 @@ class Server {
     }
 
     routes() {
-        this.app.use( this.Paths.users , require( "../routes/user.routes" ) );
+        this.app.use( this.Paths.auth , require( "../routes/auth.routes" ) )
+        this.app.use( this.Paths.users , require( "../routes/user.routes" ) )
     }
+
 
     listen() {
         this.app.listen( config.port , () => {

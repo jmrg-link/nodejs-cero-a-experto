@@ -22,6 +22,7 @@ const usersGet = async ( req = request , res = response ) => {
     } );
 };
 
+
 // PUT : MODIFY USER
 const usersPut = async ( req , res = response ) => {
     const { id } = req.params
@@ -48,8 +49,6 @@ const usersPatch = ( req , res = response ) => {
 
 // POST : CREATE USER
 const usersPost = async ( req , res = response ) => {
-
-
     const { name , lastname , email , password , role } = req.body;
     const user = new User( { name , lastname , password , email , role } )
 
@@ -66,11 +65,11 @@ const usersDelete = async ( req , res = response ) => {
     const { id } = req.params
     // const user = await User.findByIdAndDelete(id) // borrar usuario
     const user = await User.findByIdAndUpdate( id , { status: false } )
-
+    const userAuthenticated = req.user
 
     res.json( {
-        // user // retornar usuario borrado
-        user
+        user ,
+        userAuthenticated
     } );
 };
 

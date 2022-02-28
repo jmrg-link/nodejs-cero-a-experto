@@ -1,7 +1,8 @@
 // users - router
 const { Router } = require( "express" );
 const { check } = require( 'express-validator' )
-const { validationFields } = require( "../middlewares/validationFields" );
+const { validationFields , validateJWT , isAdminRole , userHashRole } = require( "../middlewares/" );
+
 const { isValidRole , isExistEmail , isExistUserById } = require( "../helpers/" );
 const {
           usersGet ,
@@ -42,6 +43,9 @@ router.post( "/" , [
 
 //DELETE :
 router.delete( "/:id" , [
+    validateJWT ,
+    isAdminRole ,
+    userHashRole('ADMIN_ROLE','SALES_ROELE'),
     check( 'id' , 'Id is not valid' ).isMongoId() ,
     check( 'id' ).custom( isExistUserById ) ,
     validationFields

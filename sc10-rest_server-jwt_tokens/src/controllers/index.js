@@ -5,6 +5,9 @@ const {
           usersPost ,
           usersDelete ,
       } = require( "./users.controller.js" );
+const {
+    login
+      } = require('./auth.controller.js')
 
 module.exports = {
     usersGet ,
@@ -12,4 +15,5 @@ module.exports = {
     usersPatch ,
     usersPost ,
     usersDelete ,
+    login
 };

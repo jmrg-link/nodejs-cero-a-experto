@@ -44,14 +44,15 @@ const UserSchema = Schema( {
         google: {
             type: Boolean ,
             default: false
-        }
+        } ,
     } ,
     {
         timestamps: true ,
     } )
 
 UserSchema.methods.toJSON = function () {
-    const {__v, password, ...objUser} = this.toObject()
+    const { __v , password , _id , ...objUser } = this.toObject()
+    objUser.uid = _id
     return objUser
 }
 module.exports = model( 'Users' , UserSchema )

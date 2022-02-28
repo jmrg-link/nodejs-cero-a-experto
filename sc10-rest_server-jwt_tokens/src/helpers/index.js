@@ -1,8 +1,11 @@
 // helpers - index
-const { isValidRole , isExistEmail ,isExistUserById} = require('./db-validators')
+const { isValidRole , isExistEmail , isExistUserById } = require( './db-validators' )
+const { generateJWT }  = require( './genJWT' )
+
 
 module.exports = {
-    isValidRole,
-    isExistEmail,
+    generateJWT ,
+    isValidRole ,
+    isExistEmail ,
     isExistUserById
 }
